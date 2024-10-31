@@ -1,0 +1,5 @@
+#! /usr/bin/bash
+set -x #echo on
+clear
+
+ansible-galaxy collection list | more

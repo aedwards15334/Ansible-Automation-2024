@@ -1,0 +1,5 @@
+[defaults]
+inventory = /root/myhosts.yml
+host_key_checking = false
+timeout = 15
+deprecation_warnings=False

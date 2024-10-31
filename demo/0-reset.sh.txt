@@ -1,0 +1,9 @@
+#! /usr/bin/bash
+set -x #echo on
+clear
+rm /root/csv -rf
+rm /root/backup -rf
+rm /root/facts -rf
+
+ansible-playbook -i /root/myhosts.yml /root/Cisco_Playbooks/6-cisco-new-nameservices.yml
+ansible-playbook -i /root/myhosts.yml /root/Cisco_Playbooks/0-reset-lab.yml

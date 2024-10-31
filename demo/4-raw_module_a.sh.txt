@@ -1,0 +1,5 @@
+#! /usr/bin/bash
+set -x #echo on
+clear
+
+ansible R1 -i /root/myhosts.ini -m raw -a "show version" -u cisco -k

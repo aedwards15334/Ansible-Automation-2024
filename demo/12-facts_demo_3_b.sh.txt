@@ -1,0 +1,8 @@
+#! /usr/bin/bash
+rm /root/csv/*.*
+set -x #echo on
+clear
+ls /root/csv
+ansible-playbook -i /root/myhosts.yml /root/Cisco_Playbooks/3-Facts_VLANS.yml
+ls /root/csv
+more /root/csv/vlan.csv

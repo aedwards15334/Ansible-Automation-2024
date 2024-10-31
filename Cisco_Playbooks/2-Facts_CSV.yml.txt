@@ -1,0 +1,30 @@
+- name: Gather IOS Facts
+  hosts: routers:&ios_router
+  connection: ansible.netcommon.network_cli
+  gather_facts: no
+
+  tasks:
+    - name: get IOS facts
+      cisco.ios.ios_facts:
+        gather_subset: min
+        gather_network_resources: all
+
+    - name: write CSV header (if empty)
+      lineinfile:
+        path: /root/csv/list.csv
+        line: "Hostname,Version"
+        create: yes
+        insertafter: EOF
+      delegate_to: localhost
+
+    - name: Create or append to CSV file
+      lineinfile:
+        path: /root/csv/list.csv
+        create: yes
+        line: "{{ ansible_net_hostname }},{{ ansible_net_version }}"
+      delegate_to: localhost
+      run_once: false # Write for each devices in inventory
+
+    - name: Display message to STDOUT
+      debug:
+        msg: "CSV updated with Hostname: {{ ansible_net_hostname }}, Version: {{ ansible_net_version }}"

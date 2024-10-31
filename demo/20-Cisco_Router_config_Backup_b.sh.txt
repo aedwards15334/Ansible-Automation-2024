@@ -1,0 +1,9 @@
+#! /usr/bin/bash
+rm /root/backup/routers/* -rf
+set -x #echo on
+clear
+ls /root/backup/routers/
+ansible-playbook -i /root/myhosts.yml /root/Cisco_Playbooks/7-Cisco_Router_Config_Backup.yml
+ls /root/backup/routers/R1
+ls /root/backup/routers/R2
+ls /root/backup/routers/R3

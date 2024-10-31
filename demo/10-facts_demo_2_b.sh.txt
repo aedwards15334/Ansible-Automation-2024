@@ -1,0 +1,8 @@
+#! /usr/bin/bash
+rm /root/csv/*.*
+set -x #echo on
+clear
+ls /root/csv/
+ansible-playbook -i /root/myhosts.yml /root/Cisco_Playbooks/2-Facts_CSV.yml
+ls /root/csv/
+more /root/csv/list.csv

@@ -1,0 +1,5 @@
+#! /usr/bin/bash
+set -x #echo on
+clear
+more /root/Cisco_Playbooks/3-Facts_VLANS.yml
+

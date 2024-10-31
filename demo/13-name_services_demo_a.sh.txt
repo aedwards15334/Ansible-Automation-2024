@@ -1,0 +1,4 @@
+#! /usr/bin/bash
+set -x #echo on
+clear
+more /root/Cisco_Playbooks/4-cisco-new-nameservices.yml

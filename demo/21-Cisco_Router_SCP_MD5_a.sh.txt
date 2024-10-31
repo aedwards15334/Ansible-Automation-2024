@@ -1,0 +1,5 @@
+#! /usr/bin/bash
+set -x #echo on
+clear
+more /root/Cisco_Playbooks/8-Cisco_Router_SCP_MD5.yml
+ls /root/backup/

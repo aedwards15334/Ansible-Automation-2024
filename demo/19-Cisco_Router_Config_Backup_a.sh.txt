@@ -1,0 +1,5 @@
+#! /usr/bin/bash
+set -x #echo on
+clear
+more /root/Cisco_Playbooks/7-Cisco_Router_Config_Backup.yml
+

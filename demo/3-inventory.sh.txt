@@ -1,0 +1,2 @@
+
+ansible -i /root/myhosts.yml --list-hosts routers:\!eos_router:\!vyos_route

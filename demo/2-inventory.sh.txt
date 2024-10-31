@@ -1,0 +1,6 @@
+#! /usr/bin/bash
+set -x #echo on
+clear
+
+more /root/myhosts.yml
+ansible-inventory -i /root/myhosts.yml --graph

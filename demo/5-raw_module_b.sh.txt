@@ -1,0 +1,6 @@
+#! /usr/bin/bash
+set -x #echo on
+clear
+
+ansible R1 -i /root/myhosts.yml -m raw -a "show ip interface brief"
+ansible R1 -i /root/myhosts.yml -m raw -a "dir bootflash: | include universal"

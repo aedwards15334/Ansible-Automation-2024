@@ -1,0 +1,10 @@
+# This is the inventory file myhosts.ini
+
+[routers]
+R1
+R2
+R3
+
+[switches]
+
+[firewalls]

@@ -1,0 +1,39 @@
+- name: Gather IOS Facts
+  hosts: routers:&ios_router
+  connection: ansible.netcommon.network_cli
+  gather_facts: no
+
+  tasks:
+    - name: get IOS facts
+      cisco.ios.ios_facts:
+        gather_network_resources:
+          - vlans
+      register: my_facts
+
+    - name: Ensure CSV file exists
+      file:
+        path: /root/csv/vlan.csv
+        state: touch
+      delegate_to: localhost
+
+    - name: write CSV header (if empty)
+      lineinfile:
+        path: /root/csv/vlan.csv
+        line: "Hostname,VLAN ID,VLAN Name"
+        create: yes
+        insertafter: EOF
+      delegate_to: localhost
+      when: not lookup('file', '/root/csv/vlan.csv').splitlines()
+
+    - name: write VLAN information to CSV
+      lineinfile:
+        path: /root/csv/vlan.csv
+        line: "{{ my_facts.ansible_facts.ansible_net_hostname }},{{ item.vlan_id }},{{ item.name }}"
+        insertafter: EOF
+      delegate_to: localhost
+      with_items: "{{ my_facts.ansible_facts.ansible_network_resources.vlans }}"
+
+    - name: Display message to STDOUT
+      debug:
+        msg: "Hostname: {{ ansible_net_hostname }}, VLAN information captured."
+

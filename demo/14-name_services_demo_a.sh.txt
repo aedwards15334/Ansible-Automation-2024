@@ -1,0 +1,4 @@
+#! /usr/bin/bash
+set -x #echo on
+clear
+ansible-playbook -i /root/myhosts.yml /root/Cisco_Playbooks/4-cisco-new-nameservices.yml

@@ -1,0 +1,19 @@
+- name: Gather IOS Facts
+  hosts: routers:&ios_router
+  connection: ansible.netcommon.network_cli
+  gather_facts: no
+
+  tasks:
+    - name: get IOS facts
+      cisco.ios.ios_facts:
+        gather_subset: min
+        gather_network_resources: all
+      register: get_info
+
+    - name: Display variable to STDOUT
+      debug:
+        var: get_info
+
+    - name: Display finished message to STDOUT
+      debug:
+        msg: "Hostname: {{ ansible_net_hostname }}, Version: {{ ansible_net_version }}"

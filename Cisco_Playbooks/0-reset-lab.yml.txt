@@ -1,0 +1,26 @@
+- name: configure cisco routers
+  hosts: routers:&ios_router
+  connection: ansible.netcommon.network_cli
+  gather_facts: no
+
+  tasks:
+    - name: delete copied file to R1 bootflash:/R2_COPIED_FILE.log
+      run_once: true
+      delegate_to: R1
+      cisco.ios.ios_command:
+        commands: "delete /force bootflash:/R2_COPIED_FILE.log"
+
+    - name: disable scp server
+      cisco.ios.ios_config:
+        lines:
+          - no ip scp server enable
+
+    - name: enable file copy confirmation
+      cisco.ios.ios_config:
+        lines:
+          - no file prompt quiet
+
+    - name: save configuration
+      cisco.ios.ios_config:
+        save_when: modified
+
